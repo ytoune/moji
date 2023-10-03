@@ -12,8 +12,14 @@
 	"license": "MIT",
 	"source": "src/moji.ts",
 	"exports": {
-		"require": "./dist/moji.cjs",
-		"default": "./dist/moji.modern.js"
+		".": {
+			"require": "./dist/moji.cjs",
+			"default": "./dist/moji.modern.js"
+		},
+		"./map": {
+			"require": "./dist/map.cjs",
+			"default": "./dist/map.modern.js"
+		}
 	},
 	"main": "dist/moji.cjs",
 	"module": "dist/moji.module.js",
@@ -27,7 +33,7 @@
 	},
 	"homepage": "https://github.com/ytoune/moji",
 	"scripts": {
-		"build": "rimraf dist && microbundle",
+		"build": "rimraf dist && microbundle build && microbundle -i src/map.ts -o dist/map.js",
 		"dev": "microbundle watch",
 		"test": "eslint '**/*.{ts,tsx}' && tsc --noEmit && jest --passWithNoTests",
 		"ts-node": "node -r esbuild-register"
