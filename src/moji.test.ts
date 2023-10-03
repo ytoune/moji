@@ -1,4 +1,11 @@
-import { zenkaku2hankaku } from './moji'
+import { moji, zenkaku2hankaku } from './moji'
+
+describe('moji', () => {
+	it('{', () => {
+		const result = moji('{').convert('HE', 'ZE').convert('HS', 'ZS').toString()
+		expect(result).toBe('｛')
+	})
+})
 
 describe('zenkaku2hankaku', () => {
 	it('Ｃ２－５，ＮＴ', () => {
