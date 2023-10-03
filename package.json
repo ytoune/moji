@@ -1,7 +1,7 @@
 {
 	"name": "@ytoune/moji",
 	"type": "module",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"description": "半角全角変換",
 	"author": {
 		"name": "ytoune"
@@ -32,10 +32,9 @@
 		"test": "eslint '**/*.{ts,tsx}' && tsc --noEmit && jest --passWithNoTests",
 		"ts-node": "node -r esbuild-register"
 	},
-	"dependencies": {
-		"@eai/moji": "^1.2.0"
-	},
+	"dependencies": {},
 	"devDependencies": {
+		"@eai/moji": "^1.2.0",
 		"@herp-inc/eslint-config": "0.18.0",
 		"@swc/core": "1.2.196",
 		"@swc/jest": "0.2.21",
@@ -85,6 +84,7 @@
 		"trailingComma": "all",
 		"semi": false,
 		"arrowParens": "avoid",
+		"printWidth": 120,
 		"overrides": [
 			{
 				"files": [
