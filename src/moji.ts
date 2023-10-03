@@ -25,6 +25,8 @@ export type ConvertType =
 	| readonly ['HSn', 'ZSn']
 	| readonly ['ZHg', 'HHg'] // ハングル
 	| readonly ['HHg', 'ZHg']
+	| readonly ['HG', 'KK']
+	| readonly ['KK', 'HG']
 
 interface Moji {
 	convert(...args: ConvertType): Moji
@@ -54,6 +56,8 @@ const regMap = {
 const repMap = {
 	ZE2HE: (m: string): string => String.fromCodePoint(kana.HE.start + (m.codePointAt(0) || 0) - kana.ZE.start),
 	HE2ZE: (m: string): string => String.fromCodePoint(kana.ZE.start + (m.codePointAt(0) || 0) - kana.HE.start),
+	HG2KK: (m: string): string => String.fromCodePoint(kana.KK.start + (m.codePointAt(0) || 0) - kana.HG.start),
+	KK2HG: (m: string): string => String.fromCodePoint(kana.HG.start + (m.codePointAt(0) || 0) - kana.KK.start),
 }
 
 const pushMap = (pairs: readonly (readonly [string, string])[], i: 0 | 1, j: 0 | 1, map: Map<string, string>) => {
@@ -82,6 +86,10 @@ const mojiImpl = (moji: string): Moji => ({
 				return mojiImpl(moji.replace(regMap.ZE, repMap.ZE2HE))
 			case 'HE':
 				return mojiImpl(moji.replace(regMap.HE, repMap.HE2ZE))
+			case 'KK':
+				return mojiImpl(moji.replace(regMap.KK, repMap.KK2HG))
+			case 'HG':
+				return mojiImpl(moji.replace(regMap.HG, repMap.HG2KK))
 			case 'ZS':
 				return mojiImpl(moji.replace(kana.ZS.patterns[0][0], kana.ZS.patterns[0][1].HS))
 			case 'HS':

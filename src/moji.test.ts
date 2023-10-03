@@ -3,7 +3,15 @@
 // @ts-ignore
 import * as Moji from '@eai/moji'
 
+import { kana } from './map'
 import { moji, zenkaku2hankaku as orig } from './moji'
+
+describe('map', () => {
+	it('ok', () => {
+		expect(kana.HE.end - kana.HE.start).toBe(kana.ZE.end - kana.ZE.start)
+		expect(kana.KK.end - kana.KK.start).toBe(kana.HG.end - kana.HG.start)
+	})
+})
 
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -94,6 +102,27 @@ describe('core', () => {
 		assert.strictEqual(
 			moji('ＡＢＣＤ　０１２３４あいうアイウABCD 01234ｱｲｳ').convert('HK', 'ZK').toString(),
 			'ＡＢＣＤ　０１２３４あいうアイウABCD 01234アイウ',
+		)
+	})
+
+	it('ひらがなからカタカナ', () => {
+		assert.strictEqual(
+			moji('ＡＢＣＤ　０１２３４あいうアイウABCD 01234ｱｲｳ').convert('HG', 'KK').toString(),
+			'ＡＢＣＤ　０１２３４アイウアイウABCD 01234ｱｲｳ',
+		)
+	})
+
+	it('カタカナからひらがな', () => {
+		assert.strictEqual(
+			moji('ＡＢＣＤ　０１２３４あいうアイウABCD 01234ｱｲｳ').convert('KK', 'HG').toString(),
+			'ＡＢＣＤ　０１２３４あいうあいうABCD 01234ｱｲｳ',
+		)
+	})
+
+	it('複数の文字種を置換', () => {
+		assert.strictEqual(
+			moji('ＡＢＣＤ　０１２３４あいうアイウABCD 01234ｱｲｳ').convert('HK', 'ZK').convert('KK', 'HG').toString(),
+			'ＡＢＣＤ　０１２３４あいうあいうABCD 01234あいう',
 		)
 	})
 })

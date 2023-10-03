@@ -1,7 +1,7 @@
 {
 	"name": "@ytoune/moji",
 	"type": "module",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "半角全角変換",
 	"author": {
 		"name": "ytoune"
