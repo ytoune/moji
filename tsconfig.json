@@ -21,6 +21,6 @@
     "allowSyntheticDefaultImports": true,
     "stripInternal": true
   },
-  "include": ["vite.config.ts", "src/**/*", "scripts/**/*"],
+  "include": ["src/**/*", "scripts/**/*"],
   "exclude": ["node_modules", "dist"]
 }

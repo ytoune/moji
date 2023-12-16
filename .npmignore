@@ -4,6 +4,8 @@
 /.eslintrc.yml
 /.yarnrc
 /src
+/dist/*.test.d.ts
 /tsconfig.json
 /yarn.lock
 /prepublish.sh
+/vite.config.ts

@@ -1,7 +1,7 @@
 {
   "name": "@ytoune/moji",
   "type": "module",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "半角全角変換",
   "author": {
     "name": "ytoune"
@@ -40,7 +40,7 @@
   "scripts": {
     "build": "rimraf dist && microbundle build && microbundle -i src/map.ts -o dist/map.js",
     "dev": "microbundle watch",
-    "test": "eslint '**/*.{ts,tsx}' && tsc --noEmit && vitest run --passWithNoTests",
+    "test": "eslint 'src/**/*.{ts,tsx}' && tsc --noEmit && vitest run --passWithNoTests",
     "ts-node": "node -r esbuild-register"
   },
   "dependencies": {},
