@@ -1,107 +1,75 @@
 {
-	"name": "@ytoune/moji",
-	"type": "module",
-	"version": "2.1.1",
-	"description": "半角全角変換",
-	"author": {
-		"name": "ytoune"
-	},
-	"engines": {
-		"node": ">= 16"
-	},
-	"license": "MIT",
-	"source": "src/moji.ts",
-	"exports": {
-		".": {
-			"require": "./dist/moji.cjs",
-			"default": "./dist/moji.modern.js"
-		},
-		"./map": {
-			"require": "./dist/map.cjs",
-			"default": "./dist/map.modern.js"
-		}
-	},
-	"main": "dist/moji.cjs",
-	"module": "dist/moji.module.js",
-	"types": "dist/moji.d.ts",
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:ytoune/moji.git"
-	},
-	"homepage": "https://github.com/ytoune/moji",
-	"scripts": {
-		"build": "rimraf dist && microbundle build && microbundle -i src/map.ts -o dist/map.js",
-		"dev": "microbundle watch",
-		"test": "eslint '**/*.{ts,tsx}' && tsc --noEmit && jest --passWithNoTests",
-		"ts-node": "node -r esbuild-register"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@eai/moji": "^1.2.0",
-		"@herp-inc/eslint-config": "0.18.0",
-		"@swc/core": "1.2.196",
-		"@swc/jest": "0.2.21",
-		"@types/jest": "28.1.0",
-		"@types/node": "17.0.39",
-		"@typescript-eslint/eslint-plugin": "5.27.0",
-		"@typescript-eslint/parser": "5.27.0",
-		"esbuild": "0.14.42",
-		"esbuild-register": "3.3.2",
-		"eslint": "8.17.0",
-		"eslint-config-prettier": "8.5.0",
-		"eslint-import-resolver-typescript": "2.7.1",
-		"eslint-plugin-import": "2.26.0",
-		"jest": "28.1.0",
-		"microbundle": "0.15.0",
-		"prettier": "2.6.2",
-		"rimraf": "3.0.2",
-		"typescript": "4.7.3"
-	},
-	"jest": {
-		"extensionsToTreatAsEsm": [
-			".ts",
-			".tsx"
-		],
-		"transform": {
-			"^.+\\.(js|jsx|ts|tsx)$": [
-				"@swc/jest",
-				{
-					"jsc": {
-						"parser": {
-							"syntax": "typescript"
-						}
-					}
-				}
-			]
-		},
-		"projects": [
-			"<rootDir>"
-		],
-		"moduleNameMapper": {
-			"^~/(.*)$": "<rootDir>/src/$1"
-		}
-	},
-	"prettier": {
-		"useTabs": true,
-		"singleQuote": true,
-		"trailingComma": "all",
-		"semi": false,
-		"arrowParens": "avoid",
-		"printWidth": 120,
-		"overrides": [
-			{
-				"files": [
-					"*.md",
-					"*.yml",
-					"*.yaml"
-				],
-				"options": {
-					"useTabs": false
-				}
-			}
-		]
-	}
+  "name": "@ytoune/moji",
+  "type": "module",
+  "version": "2.1.1",
+  "description": "半角全角変換",
+  "author": {
+    "name": "ytoune"
+  },
+  "engines": {
+    "node": ">= 18"
+  },
+  "packageManager": "yarn@1.22.21",
+  "volta": {
+    "node": "18.19.0",
+    "yarn": "1.22.21"
+  },
+  "license": "MIT",
+  "source": "src/moji.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/moji.cjs",
+      "default": "./dist/moji.modern.js"
+    },
+    "./map": {
+      "require": "./dist/map.cjs",
+      "default": "./dist/map.modern.js"
+    }
+  },
+  "main": "dist/moji.cjs",
+  "module": "dist/moji.module.js",
+  "types": "dist/moji.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ytoune/moji.git"
+  },
+  "homepage": "https://github.com/ytoune/moji",
+  "scripts": {
+    "build": "rimraf dist && microbundle build && microbundle -i src/map.ts -o dist/map.js",
+    "dev": "microbundle watch",
+    "test": "eslint '**/*.{ts,tsx}' && tsc --noEmit && vitest run --passWithNoTests",
+    "ts-node": "node -r esbuild-register"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eai/moji": "1.2.0",
+    "@herp-inc/eslint-config": "0.26.0",
+    "@types/jest": "29.5.11",
+    "@types/node": "20.10.4",
+    "@typescript-eslint/eslint-plugin": "6.14.0",
+    "@typescript-eslint/parser": "6.14.0",
+    "esbuild": "0.19.9",
+    "esbuild-register": "3.5.0",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-import": "2.29.1",
+    "microbundle": "0.15.1",
+    "prettier": "3.1.1",
+    "rimraf": "5.0.5",
+    "typescript": "5.3.3",
+    "vite": "5.0.10",
+    "vitest": "1.0.4"
+  },
+  "prettier": {
+    "useTabs": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": false,
+    "arrowParens": "avoid",
+    "printWidth": 120
+  }
 }
