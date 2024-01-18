@@ -1,4 +1,5 @@
-/* eslint-disable no-irregular-whitespace, @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { describe, it, expect } from 'vitest'
 
 // @ts-ignore
 import * as Moji from '@eai/moji'
@@ -14,7 +15,7 @@ describe('map', () => {
 })
 
 // @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+
 const moji2 = ('function' === typeof Moji ? Moji : Moji.default) as typeof moji
 const zenkaku2hankaku = (str: string) => {
   const u = moji2(str)

@@ -1,7 +1,7 @@
 {
   "name": "@ytoune/moji",
   "type": "module",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "半角全角変換",
   "author": {
     "name": "ytoune"
@@ -11,7 +11,7 @@
   },
   "packageManager": "yarn@1.22.21",
   "volta": {
-    "node": "18.19.0",
+    "node": "20.11.0",
     "yarn": "1.22.21"
   },
   "license": "MIT",
@@ -19,15 +19,16 @@
   "exports": {
     ".": {
       "require": "./dist/moji.cjs",
-      "default": "./dist/moji.modern.js"
+      "import": "./dist/moji.mjs",
+      "types": "./dist/moji.d.ts"
     },
     "./map": {
       "require": "./dist/map.cjs",
-      "default": "./dist/map.modern.js"
+      "import": "./dist/map.mjs",
+      "types": "./dist/map.d.ts"
     }
   },
   "main": "dist/moji.cjs",
-  "module": "dist/moji.module.js",
   "types": "dist/moji.d.ts",
   "publishConfig": {
     "access": "public"
@@ -38,31 +39,29 @@
   },
   "homepage": "https://github.com/ytoune/moji",
   "scripts": {
-    "build": "rimraf dist && microbundle build && microbundle -i src/map.ts -o dist/map.js",
-    "dev": "microbundle watch",
-    "test": "eslint 'src/**/*.{ts,tsx}' && tsc --noEmit && vitest run --passWithNoTests",
+    "build": "unbuild --minify && rimraf -g \"dist/*.d.{mts,cts}\"",
+    "test": "eslint \"src/**/*.ts\" && tsc --noEmit && vitest run --passWithNoTests",
     "ts-node": "node -r esbuild-register"
   },
   "dependencies": {},
   "devDependencies": {
     "@eai/moji": "1.2.0",
-    "@herp-inc/eslint-config": "0.26.0",
-    "@types/jest": "29.5.11",
-    "@types/node": "20.10.4",
-    "@typescript-eslint/eslint-plugin": "6.14.0",
-    "@typescript-eslint/parser": "6.14.0",
-    "esbuild": "0.19.9",
+    "@types/node": "20.11.5",
+    "@typescript-eslint/eslint-plugin": "6.19.0",
+    "@typescript-eslint/parser": "6.19.0",
+    "esbuild": "0.19.11",
     "esbuild-register": "3.5.0",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-github": "4.10.1",
     "eslint-plugin-import": "2.29.1",
-    "microbundle": "0.15.1",
-    "prettier": "3.1.1",
+    "prettier": "3.2.4",
     "rimraf": "5.0.5",
     "typescript": "5.3.3",
-    "vite": "5.0.10",
-    "vitest": "1.0.4"
+    "unbuild": "2.0.0",
+    "vite": "5.0.11",
+    "vitest": "1.2.1"
   },
   "prettier": {
     "useTabs": false,
@@ -71,5 +70,103 @@
     "semi": false,
     "arrowParens": "avoid",
     "printWidth": 120
+  },
+  "eslintConfig": {
+    "ignorePatterns": [
+      "/node_modules",
+      "/dist",
+      "/.cache",
+      "/.swc",
+      "/scripts/sandbox*"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "sourceType": "module"
+    },
+    "settings": {
+      "import/resolver": {
+        "typescript": {
+          "alwaysTryTypes": true
+        }
+      }
+    },
+    "env": {
+      "node": true,
+      "jest": true
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "import",
+      "github"
+    ],
+    "extends": [
+      "prettier",
+      "plugin:import/typescript",
+      "plugin:github/recommended",
+      "plugin:github/typescript"
+    ],
+    "rules": {
+      "yoda": [
+        "error",
+        "always",
+        {
+          "exceptRange": true
+        }
+      ],
+      "complexity": [
+        "error",
+        20
+      ],
+      "prefer-arrow-callback": "error",
+      "arrow-body-style": [
+        "error",
+        "as-needed"
+      ],
+      "func-style": [
+        "error",
+        "expression"
+      ],
+      "no-console": "off",
+      "no-negated-condition": "off",
+      "eslint-comments/no-use": "off",
+      "eslint-comments/no-unlimited-disable": "off",
+      "eslint-comments/no-duplicate-disable": "off",
+      "import/order": "error",
+      "import/no-default-export": "off",
+      "import/no-cycle": "off",
+      "import/no-namespace": "off",
+      "github/no-then": "off",
+      "i18n-text/no-en": "off",
+      "@typescript-eslint/array-type": [
+        "error",
+        {
+          "default": "array"
+        }
+      ],
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        {
+          "allowNumber": true
+        }
+      ],
+      "@typescript-eslint/no-shadow": "off",
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          "fixStyle": "separate-type-imports"
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "varsIgnorePattern": "^_",
+          "argsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_",
+          "ignoreRestSiblings": true
+        }
+      ]
+    }
   }
 }

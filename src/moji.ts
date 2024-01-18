@@ -44,7 +44,7 @@ export const unreachable = (_: never): never => {
 
 const u16 = (num: number) => num.toString(16).padStart(4, '0')
 const toRegStr = (pairs: readonly (readonly [string, string])[], i: 0 | 1) =>
-  `[${pairs.map(m => '\\u' + u16(m[i].codePointAt(0) || 1)).join('')}]`
+  `[${pairs.map(m => `\\u${u16(m[i].codePointAt(0) || 1)}`).join('')}]`
 const regMap = {
   ZE: new RegExp(`[\\u${u16(kana.ZE.start)}-\\u${u16(kana.ZE.end)}]`, 'g'),
   HE: new RegExp(`[\\u${u16(kana.HE.start)}-\\u${u16(kana.HE.end)}]`, 'g'),
