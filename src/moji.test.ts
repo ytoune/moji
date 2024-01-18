@@ -15,7 +15,6 @@ describe('map', () => {
 })
 
 // @ts-ignore
-
 const moji2 = ('function' === typeof Moji ? Moji : Moji.default) as typeof moji
 const zenkaku2hankaku = (str: string) => {
   const u = moji2(str)
