@@ -127,6 +127,6 @@ export const zenkaku2hankaku = (str: string) =>
     .convert('ZSn', 'HSn')
     .convert('ZHg', 'HHg')
     .toString()
-    .replace(/[ー－]/giu, '-')
+    .replace(/[ー－−]/giu, '-')
 
 export const toLowerHankaku = (str: string) => zenkaku2hankaku(str).toLowerCase()
