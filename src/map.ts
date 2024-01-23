@@ -1,5 +1,3 @@
-// https://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2
-
 // 半形字符与全形字符的比较（ASCII字符）
 // ASCII	全形字符	Unicode	半形字符	Unicode
 const asciiSpace = [

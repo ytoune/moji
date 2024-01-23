@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { describe, it, expect } from 'vitest'
 
-// @ts-ignore
-import * as Moji from '@eai/moji'
-
 import { kana } from './map'
-import { moji, zenkaku2hankaku as orig } from './moji'
+import { moji, zenkaku2hankaku } from './moji'
 
 describe('map', () => {
   it('ok', () => {
@@ -14,26 +10,7 @@ describe('map', () => {
   })
 })
 
-// @ts-ignore
-const moji2 = ('function' === typeof Moji ? Moji : Moji.default) as typeof moji
-const zenkaku2hankaku = (str: string) => {
-  const u = moji2(str)
-    .convert('ZE', 'HE')
-    .convert('ZS', 'HS')
-    .toString()
-    .replace(/[ー－]/giu, '-')
-    .replace(/[、]/giu, '､')
-  const v = orig(str)
-  const { stringify: e } = JSON
-  if (v !== u) throw new Error(`? ${e(v)} !== ${e(u)}`)
-  return v
-}
-
 describe('moji', () => {
-  it('{', () => {
-    const result = moji2('{').convert('HE', 'ZE').toString()
-    expect(result).toBe('｛')
-  })
   it('{', () => {
     const result = moji('{').convert('HE', 'ZE').toString()
     expect(result).toBe('｛')
@@ -146,7 +123,19 @@ describe('zenkaku2hankaku', () => {
   it('-ー－', () => {
     expect(zenkaku2hankaku('-ー－')).toBe('---')
   })
+  it('-ー－−', () => {
+    expect(zenkaku2hankaku('-ー－−')).toBe('----')
+  })
   it('＋－＊／', () => {
     expect(zenkaku2hankaku('＋－＊／')).toBe('+-*/')
+  })
+  it('$¯', () => {
+    expect(zenkaku2hankaku('$¯')).toBe('$¯')
+  })
+  it('$|', () => {
+    expect(zenkaku2hankaku('$|')).toBe('$|')
+  })
+  it('¥¥', () => {
+    expect(zenkaku2hankaku('¥￥')).toBe('¥¥')
   })
 })
